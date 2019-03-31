@@ -1,0 +1,4 @@
+@Imports ApiRest.Areas.HelpPage
+@ModelType ImageSample
+
+<img src="@Model.Src" />

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ContactosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ContactosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Contactos" EntityType="ContactosModel.Contactos" />
+    <EntitySet Name="TiposIdentificacion" EntityType="ContactosModel.TiposIdentificacion" />
+    <AssociationSet Name="FK__Contactos__idTip__5812160E" Association="ContactosModel.FK__Contactos__idTip__5812160E">
+      <End Role="TiposIdentificacion" EntitySet="TiposIdentificacion" />
+      <End Role="Contactos" EntitySet="Contactos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Contactos">
+    <Key>
+      <PropertyRef Name="idContacto" />
+    </Key>
+    <Property Name="idContacto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombresContacto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="apellidosContacto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="telefonosContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="correoContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="numeroIdentificacionContacto" Type="Int64" Nullable="false" />
+    <Property Name="idTipoIdentificacion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TiposIdentificacion" Relationship="ContactosModel.FK__Contactos__idTip__5812160E" FromRole="Contactos" ToRole="TiposIdentificacion" />
+  </EntityType>
+  <EntityType Name="TiposIdentificacion">
+    <Key>
+      <PropertyRef Name="idTipoIdentificacion" />
+    </Key>
+    <Property Name="idTipoIdentificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreTipoIdentificacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contactos" Relationship="ContactosModel.FK__Contactos__idTip__5812160E" FromRole="TiposIdentificacion" ToRole="Contactos" />
+  </EntityType>
+  <Association Name="FK__Contactos__idTip__5812160E">
+    <End Type="ContactosModel.TiposIdentificacion" Role="TiposIdentificacion" Multiplicity="1" />
+    <End Type="ContactosModel.Contactos" Role="Contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TiposIdentificacion">
+        <PropertyRef Name="idTipoIdentificacion" />
+      </Principal>
+      <Dependent Role="Contactos">
+        <PropertyRef Name="idTipoIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

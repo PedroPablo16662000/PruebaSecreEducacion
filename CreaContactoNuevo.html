@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Cliente prueba César Giraldo - Secretaría de Educación</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Cliente prueba César Giraldo - Secretaría de Educación</h1>
+
+    <form class="text-center border border-light p-5" method="post" action="">
+
+        <p class="h4 mb-4">Registrar Nuevo Contacto</p>
+
+        <input type="text" id="nombresContacto" class="form-control mb-4" placeholder="Nombres" name="nombresContacto">
+
+        <input type="text" id="apellidosContacto" class="form-control mb-4" placeholder="Apellidos" name="apellidosContacto">
+
+        <input type="tel" id="telefonosContacto" class="form-control mb-4" placeholder="Teléfonos" name="telefonosContacto">
+
+        <input type="email" id="correoContacto" class="form-control mb-4" placeholder="Correo Electrónico" name="correoContacto">
+
+        <select id="tipoIdentificacionContacto" name="idTipoIdentificacion" placeholder="Tipo de Identificación"></select>
+
+        <input type="text" id="numeroIdentificacionContacto" class="form-control mb-4" placeholder="Número de Identificación" name="numeroIdentificacionContacto">
+
+        <button type="submit">Enviar</button>&nbsp;&nbsp;&nbsp;<button type="reset">Limpiar</button>
+
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-github"></i>
+        </a>
+
+    </form>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:54954/api/TipoIdentificacion",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    debugger
+                    window.tipos = result;
+                    $("#tipoIdentificacionContacto").html(result);
+                    for (var i = 0; i < result.lenght; i++) {
+                        var option = new Option(result[i].idTipoIdentificacion, result[i].nombreTipoidentificacion);
+                        $('#select').append($(option));
+                    }
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>

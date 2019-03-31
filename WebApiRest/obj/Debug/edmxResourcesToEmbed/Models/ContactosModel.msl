@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ContactosModelStoreContainer" CdmEntityContainer="ContactosEntities">
+    <EntitySetMapping Name="Contactos">
+      <EntityTypeMapping TypeName="ContactosModel.Contactos">
+        <MappingFragment StoreEntitySet="Contactos">
+          <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+          <ScalarProperty Name="numeroIdentificacionContacto" ColumnName="numeroIdentificacionContacto" />
+          <ScalarProperty Name="correoContacto" ColumnName="correoContacto" />
+          <ScalarProperty Name="telefonosContacto" ColumnName="telefonosContacto" />
+          <ScalarProperty Name="apellidosContacto" ColumnName="apellidosContacto" />
+          <ScalarProperty Name="nombresContacto" ColumnName="nombresContacto" />
+          <ScalarProperty Name="idContacto" ColumnName="idContacto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TiposIdentificacion">
+      <EntityTypeMapping TypeName="ContactosModel.TiposIdentificacion">
+        <MappingFragment StoreEntitySet="TiposIdentificacion">
+          <ScalarProperty Name="nombreTipoIdentificacion" ColumnName="nombreTipoIdentificacion" />
+          <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

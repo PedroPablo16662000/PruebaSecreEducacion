@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ContactosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombresContacto" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="apellidosContacto" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="telefonosContacto" Type="nvarchar" MaxLength="150" />
+          <Property Name="correoContacto" Type="nvarchar" MaxLength="150" />
+          <Property Name="numeroIdentificacionContacto" Type="bigint" Nullable="false" />
+          <Property Name="idTipoIdentificacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposIdentificacion">
+          <Key>
+            <PropertyRef Name="idTipoIdentificacion" />
+          </Key>
+          <Property Name="idTipoIdentificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreTipoIdentificacion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Contactos__idTip__5812160E">
+          <End Role="TiposIdentificacion" Type="Self.TiposIdentificacion" Multiplicity="1" />
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposIdentificacion">
+              <PropertyRef Name="idTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Contactos">
+              <PropertyRef Name="idTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContactosModelStoreContainer">
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposIdentificacion" EntityType="Self.TiposIdentificacion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Contactos__idTip__5812160E" Association="Self.FK__Contactos__idTip__5812160E">
+            <End Role="TiposIdentificacion" EntitySet="TiposIdentificacion" />
+            <End Role="Contactos" EntitySet="Contactos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ContactosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ContactosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contactos" EntityType="ContactosModel.Contactos" />
+          <EntitySet Name="TiposIdentificacion" EntityType="ContactosModel.TiposIdentificacion" />
+          <AssociationSet Name="FK__Contactos__idTip__5812160E" Association="ContactosModel.FK__Contactos__idTip__5812160E">
+            <End Role="TiposIdentificacion" EntitySet="TiposIdentificacion" />
+            <End Role="Contactos" EntitySet="Contactos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombresContacto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="apellidosContacto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="telefonosContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="correoContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="numeroIdentificacionContacto" Type="Int64" Nullable="false" />
+          <Property Name="idTipoIdentificacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TiposIdentificacion" Relationship="ContactosModel.FK__Contactos__idTip__5812160E" FromRole="Contactos" ToRole="TiposIdentificacion" />
+        </EntityType>
+        <EntityType Name="TiposIdentificacion">
+          <Key>
+            <PropertyRef Name="idTipoIdentificacion" />
+          </Key>
+          <Property Name="idTipoIdentificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreTipoIdentificacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contactos" Relationship="ContactosModel.FK__Contactos__idTip__5812160E" FromRole="TiposIdentificacion" ToRole="Contactos" />
+        </EntityType>
+        <Association Name="FK__Contactos__idTip__5812160E">
+          <End Type="ContactosModel.TiposIdentificacion" Role="TiposIdentificacion" Multiplicity="1" />
+          <End Type="ContactosModel.Contactos" Role="Contactos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposIdentificacion">
+              <PropertyRef Name="idTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Contactos">
+              <PropertyRef Name="idTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ContactosModelStoreContainer" CdmEntityContainer="ContactosEntities">
+          <EntitySetMapping Name="Contactos">
+            <EntityTypeMapping TypeName="ContactosModel.Contactos">
+              <MappingFragment StoreEntitySet="Contactos">
+                <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+                <ScalarProperty Name="numeroIdentificacionContacto" ColumnName="numeroIdentificacionContacto" />
+                <ScalarProperty Name="correoContacto" ColumnName="correoContacto" />
+                <ScalarProperty Name="telefonosContacto" ColumnName="telefonosContacto" />
+                <ScalarProperty Name="apellidosContacto" ColumnName="apellidosContacto" />
+                <ScalarProperty Name="nombresContacto" ColumnName="nombresContacto" />
+                <ScalarProperty Name="idContacto" ColumnName="idContacto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposIdentificacion">
+            <EntityTypeMapping TypeName="ContactosModel.TiposIdentificacion">
+              <MappingFragment StoreEntitySet="TiposIdentificacion">
+                <ScalarProperty Name="nombreTipoIdentificacion" ColumnName="nombreTipoIdentificacion" />
+                <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
